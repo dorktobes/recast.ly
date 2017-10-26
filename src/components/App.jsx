@@ -10,7 +10,7 @@ class App extends React.Component {
   }
   
   videoClick(clickedVideo) {
-    console.log(clickedVideo);
+    // console.log(clickedVideo);
     this.setState({currentPlayerVideo: clickedVideo});
   }
    
