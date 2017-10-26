@@ -13,6 +13,11 @@ class App extends React.Component {
     // console.log(clickedVideo);
     this.setState({currentPlayerVideo: clickedVideo});
   }
+  searchSuccess(data) {
+    this.setState.bind(this, {videoListVideos: data});
+    this.setState.bind(this, {currentPlayerVideo: data[0]});
+    console.log(this.state);
+  }
    
   render() {
     return (
@@ -32,6 +37,14 @@ class App extends React.Component {
         </div>
       </div>
     );
+  }
+
+  componentDidMount () {
+    this.props.ajax({
+      key: YOUTUBE_API_KEY,
+      max: 5,
+      query: 'Rick Astley',
+    }, this.searchSuccess.bind(this));
   }
 }
 

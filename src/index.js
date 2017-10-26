@@ -1,1 +1,1 @@
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App ajax={window.searchYouTube} />, document.getElementById('app'));
