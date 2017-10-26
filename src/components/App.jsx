@@ -18,13 +18,21 @@ class App extends React.Component {
     this.setState({currentPlayerVideo: data[0]});
     console.log('state', this.state);
   }
-   
+  onQuery() {
+    console.log('onChange worked');
+    this.props.searchYouTube({
+      query: document.getElementsByClassName('form-control')[0].value,
+      max: 5,
+      key: YOUTUBE_API_KEY
+    }, this.searchSuccess.bind(this));  
+  }
+  
   render() {
     return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><Search /></div>
+            <div><Search queryMethod={this.onQuery.bind(this)}/></div>
           </div>
         </nav>
         <div className="row">
