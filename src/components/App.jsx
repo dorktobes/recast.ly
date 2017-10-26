@@ -14,9 +14,9 @@ class App extends React.Component {
     this.setState({currentPlayerVideo: clickedVideo});
   }
   searchSuccess(data) {
-    this.setState.bind(this, {videoListVideos: data});
-    this.setState.bind(this, {currentPlayerVideo: data[0]});
-    console.log(this.state);
+    this.setState({videoListVideos: data});
+    this.setState({currentPlayerVideo: data[0]});
+    console.log('state', this.state);
   }
    
   render() {
@@ -40,7 +40,7 @@ class App extends React.Component {
   }
 
   componentDidMount () {
-    this.props.ajax({
+    this.props.searchYouTube({
       key: YOUTUBE_API_KEY,
       max: 5,
       query: 'Rick Astley',
