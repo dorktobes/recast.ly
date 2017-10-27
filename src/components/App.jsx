@@ -4,7 +4,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       videoListVideos: exampleVideoData,
-      currentPlayerVideo: exampleVideoData[0]
+      currentPlayerVideo: exampleVideoData[0],
+      autoplay: false
       
     };
   }
@@ -16,15 +17,16 @@ class App extends React.Component {
   searchSuccess(data) {
     this.setState({videoListVideos: data});
     this.setState({currentPlayerVideo: data[0]});
-    console.log('state', this.state);
   }
   onQuery() {
-    console.log('onChange worked');
     this.props.searchYouTube({
       query: document.getElementsByClassName('form-control')[0].value,
       max: 5,
       key: YOUTUBE_API_KEY
     }, this.searchSuccess.bind(this));  
+  }
+  toggleAutoplay() {
+    this.setState({autoplay: document.getElementsByClassName('autoplay')[0].checked});
   }
   
   render() {
@@ -37,7 +39,7 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <div><VideoPlayer video={this.state.currentPlayerVideo} /></div>
+            <div><VideoPlayer video={this.state.currentPlayerVideo} autoplay={this.state.autoplay} toggleAutoplay={this.toggleAutoplay.bind(this)}/></div>
           </div>
           <div className="col-md-5">
             <div><VideoList videos={this.state.videoListVideos} method={this.videoClick.bind(this)}/></div>
